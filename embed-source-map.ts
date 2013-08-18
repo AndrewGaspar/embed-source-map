@@ -4,6 +4,7 @@
 import path = require("path");
 import fs = require("fs");
 
+import async = require("async");
 
 // Source map converter by thlorenz
 import convert = require("convert-source-map");
@@ -25,11 +26,21 @@ function embed(compiledFile: string, cb: (err, text?: string) => void) {
 		var sourceMapLocation = path.join(dir, sourceMapRelativeLocation);
 
 		fs.readFile(sourceMapLocation, { encoding: "utf8" }, (err, json: string) => {
-			if (err) cb(err);
+			if (err) return cb(err);
 
-			var newSourceMapComment = convert.fromJSON(json).toComment();
-			var newText = text.replace(match, newSourceMapComment);
-			cb(null, newText);
+			var converter = convert.fromJSON(json);
+			var sources: string[] = converter.getProperty("sources");
+
+			async.map(sources.map(source => path.join(dir, source)), (source, callback) => fs.readFile(source, { encoding: "utf8" }, callback),
+				(err, sourceContents) => {
+					if (err) return cb(err);
+
+					console.log(sourceContents);
+
+					var newSourceMapComment = converter.setProperty("sourcesContent", sourceContents).toComment();
+					var newText = text.replace(match, newSourceMapComment);
+					cb(null, newText);
+				});
 		});
 	});
 }

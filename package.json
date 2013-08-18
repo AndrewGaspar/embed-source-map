@@ -21,6 +21,7 @@
     "url": "https://github.com/AndrewGaspar/embed-source-map/issues"
   },
   "dependencies": {
-    "convert-source-map": "~0.2.6"
+    "convert-source-map": "~0.2.6",
+    "async": "~0.2.9"
   }
 }
