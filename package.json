@@ -1,6 +1,6 @@
 {
   "name": "embed-source-map",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "#embed-source-map",
   "main": "embed-source-map.js",
   "scripts": {
