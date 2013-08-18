@@ -1,0 +1,26 @@
+{
+  "name": "embed-source-map",
+  "version": "0.0.1",
+  "description": "#embed-source-map",
+  "main": "embed-source-map.js",
+  "scripts": {
+	"prepublish": "tsc -m commonjs -d embed-source-map.ts",
+    "test": "cd tests && tsc --sourcemap A.ts && node compiler.js && .\\index.html && cd .."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndrewGaspar/embed-source-map.git"
+  },
+  "keywords": [
+    "typescript",
+    "sourcemap"
+  ],
+  "author": "Andrew Gaspar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndrewGaspar/embed-source-map/issues"
+  },
+  "dependencies": {
+    "convert-source-map": "~0.2.6"
+  }
+}
