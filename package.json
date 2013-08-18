@@ -1,10 +1,10 @@
 {
   "name": "embed-source-map",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "#embed-source-map",
   "main": "embed-source-map.js",
   "scripts": {
-	"prepublish": "tsc -m commonjs -d embed-source-map.ts",
+    "prepublish": "tsc -m commonjs -d embed-source-map.ts",
     "test": "cd tests && tsc --sourcemap A.ts && node compiler.js && .\\index.html && cd .."
   },
   "repository": {
