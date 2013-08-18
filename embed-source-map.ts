@@ -35,8 +35,6 @@ function embed(compiledFile: string, cb: (err, text?: string) => void) {
 				(err, sourceContents) => {
 					if (err) return cb(err);
 
-					console.log(sourceContents);
-
 					var newSourceMapComment = converter.setProperty("sourcesContent", sourceContents).toComment();
 					var newText = text.replace(match, newSourceMapComment);
 					cb(null, newText);
